@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form-container {
+    padding: 15px;
+    max-width: 750px;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+  input,
+  textarea {
+    border: 0;
+  }
+  /* [type="submit"] {
+    background: white;
+    color: royalblue;
+    text-shadow: 1px 1px 1px black;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 12px 60px;
+    width: 100%;
+    cursor: pointer;
+  } */
+  .zeile {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 2%;
+  }
+  .zeile .input-container {
+    flex: 1 0 200px;
+  }
+  
+  .input-container {
+    background: rgb(248, 183, 248);
+    padding: 16px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    position: relative;
+      /* border-radius: 8%; */
+  }
+  
+  .input-container textarea {
+    resize: none;
+    outline: none;
+  }
+  .input-container .arrow-dwn
+  {
+    height: 21px;
+    width: 21px;
+    background: #6e93f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2vh;
+    border-radius: 50%;
+    color: #ffff;
+    font-size: 14px;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .input-container input,
+  .input-container select,
+  .input-container textarea {
+    font-size: 1.1rem;
+    color: #333;
+    outline: none;
+    width: 100%;
+    background: transparent;
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* .input-container label { */
+    /* color: grey;
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    z-index: 1;
+    font-size: 1.1rem;
+    transition: 0.5s; */
+  /* }
+  input:placeholder-shown + label,
+  textarea:placeholder-shown + label {
+    top: 16px;
+    font-size: 1.1rem;
+  }
+  input:not(:placeholder-shown) + label,
+  textarea:not(:placeholder-shown) + label {
+    top: 2px;
+    font-size: 0.8rem;
+  }
+  input:focus + label,
+  textarea:focus + label {
+    top: 2px;
+    font-size: 0.8rem;
+  } */
+  .train{
+      font-size: 1.1rem;
+    color: #333;
+    outline: none;
+    width: 20%;
+    background: transparent;
+    position: relative;
+    z-index: 2;
+      background: rgb(233, 122, 233);
+    padding: 16px;
+    margin-bottom: 20px;
+      margin-left: 40vh;
+      border-radius: 8%;
+    position: relative;
+  }
+  .top-information,
+  .bottom-information {
+    padding: 0 20px;}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+  }
+
+  th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+  }
+
+  tr:hover {background-color: #f5f5f5;}
+
+  @media screen and (max-width: 600px) {
+      table, thead, tbody, th, td, tr {
+          display: block;
+      }
+
+      thead tr {
+          position: absolute;
+          top: -9999px;
+          left: -9999px;
+      }
+
+      tr { margin: 0 0 1rem 0; }
+
+      tr:nth-child(odd) {
+          background: #ccc;
+      }
+
+      td {
+          border-bottom: 1px solid #eee;
+          position: relative;
+          padding-left: 50%;
+      }
+
+      td:before {
+          position: absolute;
+          top: 6px;
+          left: 6px;
+          width: 45%;
+          padding-right: 10px;
+          white-space: nowrap;
+      }
+
+      td:nth-of-type(1):before { content: "Order ID"; }
+      td:nth-of-type(2):before { content: "Customer"; }
+      td:nth-of-type(3):before { content: "Product"; }
+      td:nth-of-type(4):before { content: "Date"; }
+      td:nth-of-type(5):before { content: "Status"; }
+      td:nth-of-type(6):before { content: "Action"; }
+  }
+.download
+{
+margin-left: 10vh;
+}
+#previewtable
+{
+  display: block;
+}
+    </style>
+</head>
+<body>
+    <form action="/get" method="post" enctype="multipart/form-data">
+            <div class="input-container">
+    
+    <label for="Algorithm">Choose an Algorithm</label>
+    <select name="Algorithm">
+        <option value="select">select</option>
+        <option value="Linear">Linear Regression</option>
+        <option value="Logistic">Logistic Regression</option>
+        <option value="Naive">Naive Bayes</option>
+        <option value="SVM">Support Vector Machine</option>
+        <option value="Recommendation">Recommendation</option>
+    </select>
+</div>
+<div class="zeile">
+    <div class="input-container">
+        <label for="metrics">Choose a metrics</label>
+        <select name="metrics" id="metrics">
+            <option value="select">select</option>
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="opel">Opel</option>
+            <option value="audi">Audi</option>
+        </select>
+    </div>
+    <div class="input-container">
+        <label for="hyperparameter">Choose a hyperparameter</label>
+        <select name="hyperparameter" id="hyperparameter">
+            <option value="select">select</option>
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="opel">Opel</option>
+            <option value="audi">Audi</option>
+        </select>
+    </div>
+</div>
+<input type="submit" value="Train" class="train" id="train" onclick="setupTable()">
+</form>
+
+<div id="previewtable">
+    <table id="hoverable-data-table" class="table hover nowrap" style="width:100%">
+        <thead>
+            <tr> 
+                <th>Algorithm</th>
+  <th>metrics</th>
+  <th>Accuracy</th>
+  <th>file</th>
+  <th>size</th>
+  
+</tr>
+</thead>
+
+<tbody>
+    <tr>
+        {% if algorithm %}
+        <td>{{ Algorithm }}</td>
+        {% endif %}
+        <td>NA</td>
+        <td>90%</td>
+        <td>model.pkl</td>
+        <td>20KB
+            <img class="download" src="/static/img/download.png" width="10%"></td>
+  
+            
+        </tr>
+    </tbody>
+</div>
+</form>
+
+</body>
+</html><div class="input-container">
