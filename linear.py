@@ -17,28 +17,4 @@ def linear(x, y,selected_range):
     score = r2_score(y_test, pred)
     return score,model
 
-    # from main import user_Email
-    # if user_Email:
-    #     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-
-    #     # Save the model using pickle
-    #     model_filename = f"{timestamp}.pkl"
-    #     serialized_model = Binary(pickle.dumps(model))
-    #     mongo_uri = "mongodb+srv://tharun:tharun123@cluster0.okkoxqs.mongodb.net/?retryWrites=true&w=majority"
-    #     client = MongoClient(mongo_uri)
-    #     db = client.mlstudio
-    #     users_collection = db.users
-
-    #     # Create a new model entry
-    #     new_model_entry = {
-    #         "algorithm": "linear_regression",
-    #         "model_file_name": model_filename,
-    #         "Accuracy":score,
-    #         "model_file": serialized_model,
-    #         # Add other relevant information such as accuracy
-    #     }
-
-    #     # Update the models array for the user
-    #     users_collection.update_one({'email': user_Email}, {'$push': {'models': new_model_entry}})
-
 

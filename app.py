@@ -6,7 +6,7 @@ from pymongo import MongoClient
 app = Flask(__name__)
 
 
-mongo_uri = uri = "mongodb+srv://tharun:tharun123@cluster0.okkoxqs.mongodb.net/?retryWrites=true&w=majority"
+mongo_uri = uri = mongodb_URI
 client = MongoClient(mongo_uri)
 db = client.mlstudio 
 users_collection = db.users
