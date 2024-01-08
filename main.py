@@ -2,10 +2,17 @@ import pandas as pd
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import LabelEncoder
 from linear import linear
+from Logistic import Logisticregression
+from svm import SVM
+from navie import naive_bayes
+from Decision_tree import DT
+from Recommendation import func
 
-def selectioned(independent, dependent, user_email):
+def selectioned(independent, dependent,algorithms,selected_range,user_email):
     df = pd.read_csv('dataset.csv')
 
+    global user_Email
+    user_Email=user_email
     selected_columns = list(independent)  # Convert independent to a list
 
     # Check data types correctly
@@ -49,4 +56,30 @@ def selectioned(independent, dependent, user_email):
 
     x = df[independent]
     y = df[dependent]
-    return linear(x, y, user_email)
+
+    if algorithms=="LinearRegression":
+        score, model=linear(x, y,selected_range)
+        from Database import Database
+        return Database(score,model,user_email,algorithm="LinearRegression")
+
+    if algorithms=="LogisticRegression":
+        score,model=Logisticregression(x,y,selected_range)
+        from Database import Database
+        return Database(score,model,user_email,algorithm="LogisticRegression")
+    if algorithms=="SVM":
+        score,model=naive_bayes(x,y,selected_range)
+        from Database import Database
+        return Database(score,model,user_email,algorithm="Support Vector Machine")
+    if algorithms=="NB":
+        score,model=naive_bayes(x,y,selected_range)
+        from Database import Database
+        return Database(score,model,user_email,algorithm="Navie Bayes")
+    if algorithms=="DT":
+        score,model=DT(x,y,selected_range)
+        from Database import Database
+        return Database(score,model,user_email,algorithm="Decision Tree")
+    if algorithms=="Recommendation":
+        score,model,model_name=func(x,y,selected_range)
+        from Database import Database
+        return Database(score,model,user_email,model_name)
+    

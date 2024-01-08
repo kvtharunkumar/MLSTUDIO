@@ -93,9 +93,10 @@ def selection():
         sel_dependent=request.form.getlist(('dependent'))
         sel_independent=request.form.get('independent')
         user_email = session['email']
-        from main import selectioned
-        selectioned(sel_dependent, sel_independent, user_email)
         algorithms = request.form['algorithm']
+        selected_range=float(request.form['selected_range'])
+        from main import selectioned
+        selectioned(sel_dependent, sel_independent,algorithms,selected_range,user_email)
         metric = request.form['metrics']
         # from main import my
         # my(sel_dependent,sel_independent)

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>MLSTUDIO</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="/static/train.css" />
   <link rel="stylesheet" href="/static/footer.css" />
@@ -45,8 +45,8 @@
         <div id="upload-section">
           <div class="upload-container">
             <input type="file" name="file" class="file-input" name="file" accept=".csv" id="fileInput">
-            <label for="fileInput" class="upload">
-              <span class="material-symbols-outlined">upload</span>&nbsp;upload dataset
+              <label for="fileInput" class="upload">
+                <span class="material-symbols-outlined">upload</span>&nbsp;upload dataset
             </label>
           </div>
           <button type="submit" id="button" class="btn btn-secondary btn-lg">submit</button>
@@ -54,98 +54,105 @@
       </form>
       
       <form action="/var_selection" method="post" enctype="multipart/form-data" id="dynamicForm" style="display: block;">
-      <div class="container overflow-hidden text-center" id="selection">
-        <div class="row gx-5">
-          <div class="col">
-           <div class="p-3">
-            <label  id="lables" class="form-check-label" id="dep">select dependent varaible</label>
-            {% for i in dependent %}
-  <div class="form-check">
-    <input name="dependent" class="form-check-input" type="checkbox" value="{{ i }}" id="dep">
-    <label class="form-check-label" for="{{ checkbox}}">
-      {{ i }}
-    </label>
-  </div>
-{% endfor %}
-           </div>
-          </div>
-          <div class="col">
-            <div class="p-3">
+        <div class="container overflow-hidden text-center" id="selection">
+          <div class="row gx-5">
+            <div class="col">
+                <div class="p-3">
+                  <label  id="lables" class="form-check-label" id="dep">select dependent varaible</label>
+                    {% for i in dependent %}
+                    <div class="form-check">
+                    <input name="dependent" class="form-check-input" type="checkbox" value="{{ i }}" id="dep">
+                      <label class="form-check-label" for="{{ checkbox}}">
+                    {{ i }}
+                </label>
+         </div>
+                  {% endfor %}
+        </div>
+      </div>
+        <div class="col">
+          <div class="p-3">
               <label  id="lables" class="form-check-label">select independent varaible</label>
               {% for i in dependent %}
               <div class="form-check">
                 <input name="independent" class="form-check-input" type="radio" value="{{ i }}" id="dep" >
-                <label class="form-check-label" for="{{ 'radio_' + loop.index|string }}">
-                  {{ i }}
-                </label>
-              </div>
-            {% endfor %}
+                  <label class="form-check-label" for="{{ 'radio_' + loop.index|string }}">
+                    {{ i }}
+                    </label>
+                  </div>
+              {% endfor %}
             </div>
           </div>
         </div>
       </div>
       <form id="selection1" method="post" action="/algorithm" enctype="multipart/form-data">
         <label  id="lables" class="form-check-label">select Algorithm</label>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="algorithm" id="flexRadioDefault2">
-          <label class="form-check-label" for="flexRadioDefault1">
-            Linear Regression
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="algorithm" id="flexRadioDefault2" >
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="algorithm" id="flexRadioDefault2" value="LinearRegression">
+              <label class="form-check-label" for="flexRadioDefault1">
+                Linear Regression
+              </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="algorithm" id="flexRadioDefault2" value="LogisticRegression">
+              <label class="form-check-label" for="flexRadioDefault2">
+                Logistic Regression
+              </label>
+          </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="algorithm" id="flexRadioDefault2" value="SVM">
           <label class="form-check-label" for="flexRadioDefault2">
-            Logistic Regression
+            Support vector machine
           </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="algorithm" id="flexRadioDefault2" >
-        <label class="form-check-label" for="flexRadioDefault2">
-          Support vector machine
-        </label>
+        <input class="form-check-input" type="radio" name="algorithm" id="flexRadioDefault2" value="NB">
+          <label class="form-check-label" for="flexRadioDefault2">
+            Navie bayes
+          </label>
+      </div>
+         <div class="form-check">
+        <input class="form-check-input" type="radio" name="algorithm" id="flexRadioDefault2" value="DT">
+          <label class="form-check-label" for="flexRadioDefault2">
+            Decision Tree
+          </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="algorithm" id="flexRadioDefault2" >
-        <label class="form-check-label" for="flexRadioDefault2">
-          Navie bayes
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="algorithm" id="flexRadioDefault2">
-        <label class="form-check-label" for="flexRadioDefault2">
-          Recommendation
-        </label>
+        <input class="form-check-input" type="radio" name="algorithm" id="flexRadioDefault2" value="Recommendation">
+          <label class="form-check-label" for="flexRadioDefault2">
+            Recommendation
+          </label>
       </div>
       <label  id="lables" class="form-check-label">select range for Train </label>
-      <label for="customRange2" class="form-label">Example range</label>
-<input type="range" class="form-range" min="50" max="90" id="customRange2">
-      <label  id="lables" class="form-check-label">select metrics</label>
+      <label for="splitValue" class="form-label">Selected Split: </label>
+      <output for="customRange2" id="splitValue">0.20</output>
+      <input type="range" class="form-range" min="0.20" max="0.50" step="0.01" id="customRange2" name="selected_range" oninput="updateSplitValue(this.value)"> 
+                 <label  id="lables" class="form-check-label">select metrics</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="metrics" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              MSE
+            </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="metrics" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              RMSE
+            </label>
+        </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="metrics" id="flexRadioDefault1">
-        <label class="form-check-label" for="flexRadioDefault1">
-          MSE
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="metrics" id="flexRadioDefault1">
-        <label class="form-check-label" for="flexRadioDefault1">
-          RMSE
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="metrics" id="flexRadioDefault1">
-        <label class="form-check-label" for="flexRadioDefault1">
-          R Squared(R<sup>2</sup>)
-        </label>
+          <label class="form-check-label" for="flexRadioDefault1">
+            R Squared(R<sup>2</sup>)
+          </label>
       </div>
       <!-- <div class="d-grid gap-2 col-6 mx-auto">
         <button  type="submit" class="btn btn-primary">Train</button>
         </div> -->
-      <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
-        Next
-      </button>
-      </form>
-      </div>
+              <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                Next
+              </button>
+          </form>
+        </div>
       </div>
     </div>
     
@@ -219,11 +226,16 @@
 </footer>
 
  <script src="/static/train.js"></script> 
- <script>
-  document.getElementById("button").addEventListener("click", function() {
-    document.getElementById("dynamicForm").style.display = "block";
-  });
-</script>
+<script>
+    // Get the range input and output elements
+    var rangeInput = document.getElementById('customRange2');
+    var splitValueOutput = document.getElementById('splitValue');
+
+    // Add an event listener to update the split value dynamically
+    rangeInput.addEventListener('input', function() {
+      splitValueOutput.textContent = rangeInput.value;
+    });
+  </script>
 
 </body>
 </html>
