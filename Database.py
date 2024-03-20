@@ -11,11 +11,9 @@ def Database(score,model,user_email,algorithm):
         # Save the model using pickle
         model_filename = f"{timestamp}.pkl"
         serialized_model = Binary(pickle.dumps(model))
-<<<<<<< HEAD
-        mongo_uri = mongo()
-=======
+
         mongo_uri =mongodb_URI
->>>>>>> 77710e9915e0814d7812d4b9cffe5c386ad8cbd5
+
         client = MongoClient(mongo_uri)
         db = client.mlstudio
         users_collection = db.users
