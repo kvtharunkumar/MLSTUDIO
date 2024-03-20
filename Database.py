@@ -2,6 +2,7 @@ import pickle
 from bson import Binary
 from pymongo import MongoClient
 from datetime import datetime
+from config import mongo
 
 def Database(score,model,user_email,algorithm):
     if user_email:
@@ -10,7 +11,7 @@ def Database(score,model,user_email,algorithm):
         # Save the model using pickle
         model_filename = f"{timestamp}.pkl"
         serialized_model = Binary(pickle.dumps(model))
-        mongo_uri = "mongodb+srv://tharun:tharun123@cluster0.okkoxqs.mongodb.net/?retryWrites=true&w=majority"
+        mongo_uri = mongo()
         client = MongoClient(mongo_uri)
         db = client.mlstudio
         users_collection = db.users

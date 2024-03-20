@@ -30,7 +30,7 @@ def selectioned(independent, dependent,algorithms,selected_range,user_email):
             df[selected_columns] = imp.fit_transform(df[selected_columns])
 
         if is_dependent_numerical:
-            imp = SimpleImputer(strategy='mean')
+            imp = SimpleImputer(strategy='median')
             df[[dependent]] = imp.fit_transform(df[[dependent]])  # Pass dependent as a list
         else:
             imp = SimpleImputer(strategy='most_frequent')

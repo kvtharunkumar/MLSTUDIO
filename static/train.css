@@ -8,6 +8,18 @@ html {
   image-rendering: crisp-edges;
   scroll-behavior: smooth;
 }
+ .FixedHeightContainer
+{
+  float:right;
+  height: 500px;
+  width:100%; 
+}
+.Content
+{
+  height:400px;
+   overflow:auto;
+    background:#fff;
+}
 
 body {
   font-family: "Manrope", sans-serif;
