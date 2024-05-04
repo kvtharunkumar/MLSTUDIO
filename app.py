@@ -13,7 +13,7 @@ from config import mongo
 app = Flask(__name__)
 
 appConf={
-
+   
     }
 
 oauth= OAuth(app)
@@ -29,6 +29,7 @@ def welcome():
     return render_template('index.html')
 
 oauth.register(
+    name='mlstudio',
     
 )
 
@@ -152,21 +153,35 @@ def history():
     models = user_data.get("models", []) if user_data else []
 
     model_filename = request.args.get("download")  # Check for download request
+    # if model_filename:
+    #     for model in models:
+            
+    #             base64_data = model["model_file"]
+                
+    #             decoded_data = base64.decodebytes(base64_data)  # Convert string to bytes before decoding
+                
+    #             return send_file(
+    #                 io.BytesIO(decoded_data),
+    #                download_name=model_filename,
+    #                 as_attachment=True
+    #             )
     if model_filename:
         for model in models:
-            
-                base64_data = model["model_file"]
-                
-                decoded_data = base64.decodebytes(base64_data)  # Convert string to bytes before decoding
-                
-                return send_file(
-                    io.BytesIO(decoded_data),
-                   download_name=model_filename,
-                    as_attachment=True
-                )
-
-
+            base64_data = model.get("model_file")
+            if base64_data:
+                try:
+                    decoded_data = base64.b64decode(base64_data)
+                    return send_file(
+                        io.BytesIO(decoded_data),
+                        download_name=model_filename,
+                        as_attachment=True
+                    )
+                except base64.binascii.Error as e:
+                    # Log the error or handle it appropriately
+                    print("Base64 decoding error:", e)
       
+
+        
 
     return render_template('history.html', models=models,user_email=user_email)
 
@@ -209,6 +224,9 @@ def selection():
 
         return render_template('trian.html', models=models)
 
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
 
 @app.route('/about')
 def about():

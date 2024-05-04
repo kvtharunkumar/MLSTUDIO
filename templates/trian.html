@@ -26,7 +26,7 @@
                  <li class="active"><a href="index">Home</a></li>
                  <li><a href="trian">Train</a></li>
                  <li ><a href="historys">History</a></li>
-                 <li><a href="#">Profile</a></li>
+            
                  <li><a href="about">About</a></li>
                  <li><a href="{{ url_for('logout') }}">Logout</a></li>
                  &nbsp;<li><a href="">{{user_email}}</a></li>
@@ -243,7 +243,7 @@
                     // Display the data div and hide the empty div
                     document.getElementById('download').style.display = 'block';
                     
-                }, 5000); 
+                }, 10000); 
             };
 
             fetchData();

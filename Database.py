@@ -12,8 +12,9 @@ def Database(score,model,user_email,algorithm):
         model_filename = f"{timestamp}.pkl"
         serialized_model = Binary(pickle.dumps(model))
 
-        mongo_uri =mongodb_URI
-
+        mongo_uri =mongo(
+            
+        )
         client = MongoClient(mongo_uri)
         db = client.mlstudio
         users_collection = db.users
